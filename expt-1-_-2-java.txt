@@ -1,0 +1,148 @@
+                                 EXPT 1-A
+import java.awt.*;
+import java.applet.*;
+import java.awt.event.*;
+
+@SuppressWarnings("serial")
+public class KeyEventDemo extends Applet implements KeyListener
+{
+    String msg = "";
+
+    public void init()
+    {
+        addKeyListener(this);
+    }
+
+    public void keyReleased(KeyEvent k)
+    {
+        showStatus("Key Released");
+msg="Key Released";
+        repaint();
+    }
+
+    public void keyTyped(KeyEvent k)
+    {
+        showStatus("Key Typed");
+msg="Key Typed";
+        repaint();
+    }
+
+    public void keyPressed(KeyEvent k)
+    {
+        showStatus("Key Pressed");
+msg="Key Pressed";
+        repaint();
+    }
+
+    public void paint(Graphics g)
+    {
+        g.drawString(msg, 10, 10);
+    }
+}
+                                 EXPT 1-B
+import java.awt.*;
+import java.applet.*;
+import java.awt.event.*;
+
+public class KeyDemo extends Applet implements KeyListener
+{
+  String msg = "";
+
+public void init()
+{
+       addKeyListener(this);
+}
+public void keyPressed(KeyEvent k)
+{
+    int key = k.getKeyCode();
+  switch(key)
+  {
+       case KeyEvent.VK_F1:
+             msg = msg + "F1 ";
+          break;
+    case KeyEvent.VK_F2:
+         msg = msg + "F2 ";
+          break;
+    case KeyEvent.VK_F3:
+          msg = msg + "F3 ";
+          break;
+    case KeyEvent.VK_F4:
+          msg = msg + "F4 ";
+          break;
+    case KeyEvent.VK_RIGHT:
+          msg = msg + "RIGHT ";
+          break;
+    case KeyEvent.VK_LEFT:
+          msg = msg + "LEFT ";
+          break;
+    case KeyEvent.VK_UP:
+         msg = msg + "UP ";
+         break;
+    case KeyEvent.VK_DOWN:
+         msg = msg + "DOWN ";
+         break;
+  }
+  repaint();
+}
+public void keyReleased(KeyEvent k){}
+public void keyTyped(KeyEvent k){}
+
+public void paint(Graphics g)
+{
+  g.drawString(msg, 10, 10);
+}
+}
+                                   EXPT 2
+import java.awt.*;
+import java.awt.event.*;
+
+public class Framedemo extends Frame implements MouseListener
+
+{
+
+Label l;
+Framedemo()
+{
+super("AWT Frame");
+l = new Label();
+l.setFont(new Font("Courier New", Font.ITALIC, 20));
+l.setBackground(Color.GREEN);
+l.setBounds(25, 60, 250, 30);
+l.setAlignment(Label.CENTER);
+this.add(l);
+this.setSize(300, 300);
+this.setLayout(null);
+this.setVisible(true);
+this.addMouseListener(this);
+this.addWindowListener(new WindowAdapter() {
+public void windowClosing(WindowEvent e) {
+dispose();
+}
+});
+}
+public static void main(String[] args) {
+new Framedemo();
+}
+@Override
+public void mouseClicked(MouseEvent e) {
+l.setText("Mouse Clicked");
+}
+@Override
+public void mousePressed(MouseEvent e) {
+l.setText("Mouse Pressed");
+}
+@Override
+public void mouseReleased(MouseEvent e) {
+l.setText("Mouse Released");
+}
+@Override
+public void mouseEntered(MouseEvent e) {
+l.setText("Mouse Entered");
+
+}
+@Override
+public void mouseExited(MouseEvent e) {
+l.setText("Mouse Exited");
+}
+}
+

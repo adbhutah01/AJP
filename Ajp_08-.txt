@@ -1,0 +1,68 @@
+import java.util.Scanner;
+import java.sql.*;
+
+public class Exp_08 {
+  public static void main(String[] args) {
+    String driver = "com.mysql.cj.jdbc.Driver";
+    String username = "root";
+    String password = "061304";
+    String url = "jdbc:mysql://localhost:3306/College2";
+
+    try {
+       Class.forName(driver);
+       Connection con = DriverManager.getConnection(url, username, password);
+       Statement stmt = con.createStatement();
+
+      String q1 = "INSERT INTO Student2 VALUES(101, 'Shruti', 'hendshruti@gmail.com', 9843453626)";
+      String q2 = "SELECT * FROM Student2";
+      String q3 = "UPDATE Student2 SET Mobile = 8982127123 WHERE Name = 'Shruti'";
+      String q4 = "DELETE FROM Student2 WHERE Roll_No = 101";
+
+      boolean continueLoop = true;
+      do {
+        System.out.print("Enter your Choice: ");
+        Scanner sc = new Scanner(System.in);
+        int choice = sc.nextInt();
+
+         switch (choice) {
+           case 1:
+             System.out.println("Insert Values into Table:");
+             stmt.execute(q1);
+             System.out.println("Data inserted successfully.");
+             break;
+           case 2:
+             System.out.println("Read Values from Table:");
+             ResultSet rs = stmt.executeQuery(q2);
+             System.out.println("Roll_No Name           Email       Mobile");
+             while (rs.next()) {
+               System.out.println(rs.getInt("Roll_No") + " " + rs.getString("Name") + " " +
+                    rs.getString("Email") + " " + rs.getLong("Mobile"));
+             }
+             break;
+           case 3:
+             System.out.println("Update the Table");
+             stmt.executeUpdate(q3);
+             System.out.println("Data updated successfully");
+             break;
+           case 4:
+             System.out.println("Delete Values from Table:");
+                  stmt.execute(q4);
+                  System.out.println("Data deleted successfully.");
+                  break;
+                default:
+                  System.out.print("Invalid Choice");
+                  break;
+            }
+
+              System.out.println("Do you really want to continue (Y/N) ?");
+              String response = sc.next();
+              if (response.equalsIgnoreCase("N")) {
+                  continueLoop = false;
+              }
+           } while (continueLoop);
+        } catch (ClassNotFoundException | SQLException e) {
+           e.printStackTrace();
+        }
+    }
+}
+
