@@ -1,0 +1,318 @@
+                                       Experiment 4
+
+import java.sql.*;
+
+public class NewDB {
+
+       public static void main(String[] args) throws ClassNotFoundException,
+SQLException {
+
+               String queryl = "INSERT INTO studentdata VALUES (1, 304, 'Karan',
+'Kumar', 'abc@gmail.com', 1239874560)";
+
+               String query2 = "select * from studentdata";
+
+               try{
+
+                       Class.forName("com.mysql.cj.jdbc.Driver");
+
+                       Connection conn =
+
+DriverManager.getConnection("jdbc:mysql://loca1host:3306/dbms","rutu”,"Rutu@25l 1");
+
+                       Statement stmt = conn.createStatement();
+
+                       System.out.println("1nserting data...");
+
+                       stmt.execute(queryl);
+
+                       System.out.println("Data after insertion...");
+
+                       ResultSet rs = stmt.executeQuery(query2);
+
+                       System.out.println("SrNo. \t" + "RNo. \t" + "Fname \t\t" + "Lname \t"
++ " Email \t\t" + " Mobile No.\t");
+
+                       while(rs.next()) {
+
+                               System.out.println(" " + rs. getInt("SrNo") + " \t" +
+rs.getInt("Rolll\Io") + "\t " + rs.getString("ﬁrst_name") + " \t" + rs. getString("last_name")+ "
+\t " + rs.getString("email_id") + "\t " + rs.getString("mobile"));
+
+                       }
+                } catch (SQLException e) {
+                                                                                  Name — Hrutuja Ugale
+                                                                                     Roll No. 304D052
+
+                                      e.printStackTrace();
+
+                          } catch (ClassNotFoundException e) {
+
+                                      e.printStackTrace();
+
+
+
+
+Output:
+
+
+
+
+Inserting data...
+Data after insertion...
+SrNo. RN0. Fname                              Lname          Email           Mobile No.
+ 1       304                  Karan           Kumar          abc@gmail.com   1239874560
+                                                      FL.
+
+
+
+
+          elect * from Studentd.ta;
+                                                      +
+                                  +
+          I
+              |
+              |
+                  I
+                      |
+                          I
+
+                              l
+                                      |
+                                      |
+                                      |
+                                      |
+
+                                          |
+                                          |
+                                          |
+                                          |
+                                              I
+                                                  |
+                                                  |
+
+
+
+
+              Rallwe I $iP5t_nam;                       |
+          ———————— +————-————-——+
+              364 I Karan        | Kumar
+                                +
+1 new in set (i
+
+mys 1}
+                                                                             Name — Hrutuja Ugale
+                                                                                Roll No. 304D052
+
+                                       Experiment N0. 8
+import java.sql.*;
+
+import java.uti1.Scanner;
+
+
+
+public class JDBCEX {
+
+       public static void main(String[] args) {
+
+               Scanner sc = new Scanner(System. in);
+
+               int rn= 0;
+
+               String fn =
+                             H".
+               String ln =     ,
+
+               char ctn = 'N';
+
+               int ch = 0;
+
+               String create = "";
+
+               String read = "";
+
+               String update = "";
+
+               String delete = "";
+
+               try{
+                       Class.forName("com.mysql.cj.jdbc.Driver");
+
+                       Connection conn =
+DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms","rutu","Rutu@251 1");
+
+                       System.out.println("Connection Created");
+
+                       Statement stmt = conn.createStatement();
+
+                       PreparedStatement pstmt = null;
+
+                       ResultSet rs;
+
+                       do{
+
+                                   System.out.print1n("Selcct CRUD Operationz");
+
+                                   System.out.print1n("l .Create \n2.Read \n3.Update \n4.Delete
+");
+                                                                              Name — Hrutuja Ugale
+                                                                                 Roll No. 304D052
+
+                       System.out.println("Enter your choice: "); ch = sc.nextInt();
+
+                       switch(ch) {
+                              case 1:
+
+                                        System.out.print1n("Enter Roll No.: ");
+
+                                        rn = sc.nextInt();
+
+                                        System.out.print1n("Enter First Name:");
+
+                                        fn = sc.next();
+
+                                        System.out.print1n("Enter Last Name: ");
+
+                                        1n = sc.next();
+
+                                        create="insert into classdata values(?,?,? ";
+
+                                        pstmt = conn.prepareStatement(create);
+
+                                        pstmt.setInt( 1 , rn);
+
+                                        pstmt.setString(2, fl’l);
+
+                                        pstmt.setString(3, 1n);
+
+                                        pstmt.execute();
+
+                                        System.out.print1n("Data Inserted Successfully\n");
+
+                                        break;
+
+
+
+                              case 2:
+
+                                        read _l'
+                                             — select * ﬁom classdata";
+
+                                        pstmt = conn.prepareStatement(read); rs =
+pstmt.executeQuery(red);
+
+                                        System.out.print1n("RNo.\t " +"FName\t" + "LName
+\t");
+                                        while(rs.next()) {
+
+                                                 System.out.print1n(" " +rs.getlnt("rolln0") + "\t"
++ rs. getString("ﬁrst_name") + " \ " + rs.getString("1ast_name"));
+
+                                        }
+                                                                                  Name — Hrutuja Ugale
+                                                                                     Roll No. 304D052
+
+                                             break;
+
+                                   case 3:
+
+                                             System.0ut.println("Enter ﬁrst name of student Whose
+roll no is to update: ");
+
+                                             fn = sc.next();
+
+                                             System.out.println("Enter correct r011 n0.:\r\n" );
+
+                                             rn = sc.nextlnt();
+
+                                             update = "UPDATE classdata SET RollNo = m
+WHERE f1rst_name = fn";
+
+                                             pstmt=conn.prepareStatement(update);
+
+                                             pstmt.setInt(], m);
+
+                                             pstmt.setString(2, fn);
+
+                                             pstmt.execute();
+
+                                             System.out.println("Data Updated Successfully\n");
+
+                                             break;
+
+                                   case 4:
+
+                                             System.out.println("Enter roll no of student to delete
+record: ");
+
+                                             rn = sc.nextInt();
+
+                                             delete = "DELETE FROM classdata WHERE RollNo="
+
+
+
+                                             pstmt=conn.prepareStatement(delete); pstmt.execute();
+
+                                             System.out.println("Data Deleted Successfully\n");
+
+                                             break;
+
+                                   default
+
+                                             System.out.println "Choice Not Matched...!");
+
+                            }
+                            System. out.print1n("Do you want to continue:Y/N\n");
+                                                                         Name — Hrutuja Ugale
+                                                                            Roll No. 304D052
+
+                               ctn = sc.next().charAt(0);
+
+                       }While(Character.toUpperCase(ctn)=='Y');
+
+                       conn.close();
+
+                       System. out.print1n("Pr0gram Terminated... 1");
+
+                } catch (SQLException e) {
+
+                       e.printStackTrace();
+
+                } catch (ClassNotFoundException e) {
+
+                       e.printStackTrace();
+
+
+
+
+Output:
+
+Select CRUD Operation:
+1.Create
+2.Read
+3.Update
+4.De1ete
+Enter your choice:
+2
+RNo.     FName         LName
+ 111 rutu takale
+Do you want to continue:Y/N
+
+y
+Select CRUD Operation:
+1.Create
+2.Read
+3.Update
+4.De1ete
+Enter your choice:
+4
+Enter roll no of student to delete record:
+111
+Data Deleted Successfully
+Do you want to continuezY/N
+
+II
+Program Terminated...!
+Name — Hrutuja Ugale
+   Roll No. 304D052
+
